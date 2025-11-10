@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Таблица случайных цветов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        td {
+            width: 80px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #333;
+            font-size: 10px;
+            color: white;
+            text-shadow: 1px 1px 1px black;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Таблица случайных цветов</h1>
+    <div id="colorTable"></div>
+
+    <script>
+        function generateRandomColor() {
+            const r = Math.round(255 * Math.random()).toString(16).padStart(2, '0');
+            const g = Math.round(255 * Math.random()).toString(16).padStart(2, '0');
+            const b = Math.round(255 * Math.random()).toString(16).padStart(2, '0');
+            return r + g + b;
+        }
+
+        function createColorTable(rows, cols) {
+            let tableHTML = '<table>';
+            
+            for (let i = 0; i < rows; i++) {
+                tableHTML += '<tr>';
+                for (let j = 0; j < cols; j++) {
+                    const color = generateRandomColor();
+                    tableHTML += `<td bgcolor="#${color}">${color}</td>`;
+                }
+                tableHTML += '</tr>';
+            }
+            
+            tableHTML += '</table>';
+            return tableHTML;
+        }
+
+        // Создаем таблицу 9x9
+        document.getElementById('colorTable').innerHTML = createColorTable(9, 9);
+    </script>
+</body>
+</html>
